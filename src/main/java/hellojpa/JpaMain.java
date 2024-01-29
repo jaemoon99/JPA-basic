@@ -17,10 +17,13 @@ public class JpaMain {
         //code
         try {
             //생성
-//            Member member = new Member();
-//            member.setId(2L);
-//            member.setName("HelloB");
-//            em.persist(member);
+            //비영속
+            Member member = new Member();
+            member.setId(100L);
+            member.setName("HelloB");
+
+            //영속(영속성 컨텍스트에 정보가 저정됨)
+            em.persist(member);
 
             //전체 조회
 //            Member findMember = em.find(Member.class, 1L);
@@ -28,14 +31,14 @@ public class JpaMain {
 //            System.out.println("findMember.name = " + findMember.getName());
 
             //조건 조회
-            List<Member> result = em.createQuery("select m from Member as m", Member.class)
+//            List<Member> result = em.createQuery("select m from Member as m", Member.class)
 //                    .setFirstResult(1) //시작 번호부터
 //                    .setMaxResults(1) //끝 번호까지
-                    .getResultList(); //JPQL
+//                    .getResultList(); //JPQL
 
-            for (Member member : result) {
-                System.out.println("member.name = " + member.getName());
-            }
+//            for (Member member : result) {
+//                System.out.println("member.name = " + member.getName());
+//            }
 
             //삭제
 //            em.remove(findMember);
@@ -43,6 +46,7 @@ public class JpaMain {
             //수정
 //            findMember.setName("HelloJPA");
 
+            //컨텍스트에 있는 정보를 디비에 저장
             tx.commit(); //트랜잭션 커밋
         } catch (Exception e) {
             tx.rollback();
