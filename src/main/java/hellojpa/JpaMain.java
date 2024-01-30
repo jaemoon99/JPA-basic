@@ -18,10 +18,10 @@ public class JpaMain {
         try {
             //생성
             //비영속
-            Member member = new Member(100L, "A");
-
-            //영속(영속성 컨텍스트에 정보가 저정됨)
-            em.persist(member);
+//            Member member = new Member(100L, "A");
+//
+//            //영속(영속성 컨텍스트에 정보가 저정됨)
+//            em.persist(member);
 
             //전체 조회
 //            Member findMember = em.find(Member.class, 1L);
