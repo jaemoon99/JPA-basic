@@ -17,21 +17,22 @@ public class JpaMain {
 
         //code
         try {
+            Team team = new Team();
+            team.setName("TeamA");
+            em.persist(team);
+
             Member member = new Member();
             member.setUsername("hello");
-
+            member.setTeam(team);
             em.persist(member);
+
 
             em.flush();
             em.clear();
 
-            Member refMember = em.getReference(Member.class, member.getId());
-            refMember.getUsername();
-            System.out.println("isLoaded = " + emf.getPersistenceUnitUtil().isLoaded(refMember));
+            Member m = em.find(Member.class, member.getId());
 
-//            Member findMember = em.find(Member.class, member.getId());
-//            System.out.println("findMember.getId() = " + findMember.getId());
-//            System.out.println("findMember.getUsername() = " + findMember.getUsername());
+            System.out.println("m.getTeam().getClass() = " + m.getTeam().getClass());
 
             tx.commit(); //트랜잭션 커밋
         } catch (Exception e) {
