@@ -17,22 +17,20 @@ public class JpaMain {
 
         //code
         try {
-            Team team = new Team();
-            team.setName("TeamA");
-            em.persist(team);
+            Child child1 = new Child();
+            Child child2 = new Child();
 
-            Member member = new Member();
-            member.setUsername("hello");
-            member.setTeam(team);
-            em.persist(member);
+            Parent parent = new Parent();
+            parent.addChild(child1);
+            parent.addChild(child2);
 
+            em.persist(parent);
 
             em.flush();
             em.clear();
 
-            Member m = em.find(Member.class, member.getId());
-
-            System.out.println("m.getTeam().getClass() = " + m.getTeam().getClass());
+            Parent findparent = em.find(Parent.class, parent.getId());
+            findparent.getChildList().remove(0);
 
             tx.commit(); //트랜잭션 커밋
         } catch (Exception e) {
