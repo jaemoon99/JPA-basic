@@ -17,20 +17,8 @@ public class JpaMain {
 
         //code
         try {
-            Child child1 = new Child();
-            Child child2 = new Child();
 
-            Parent parent = new Parent();
-            parent.addChild(child1);
-            parent.addChild(child2);
 
-            em.persist(parent);
-
-            em.flush();
-            em.clear();
-
-            Parent findparent = em.find(Parent.class, parent.getId());
-            findparent.getChildList().remove(0);
 
             tx.commit(); //트랜잭션 커밋
         } catch (Exception e) {
